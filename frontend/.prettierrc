@@ -1,0 +1,11 @@
+export default {
+  plugins: {
+    vue: {
+      template: {
+        compilerOptions: {
+          isCustomElement: (tag) => tag === 'ion-app' || tag === 'ion-router',
+        },
+      },
+    },
+  },
+}

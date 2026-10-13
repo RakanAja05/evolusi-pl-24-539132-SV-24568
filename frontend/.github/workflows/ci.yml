@@ -1,0 +1,85 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [main, dev, 'feature/**']
+
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, dom, fileinfo, mysql
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --no-progress --prefer-dist
+
+  test:
+    name: Test
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, dom, fileinfo, mysql
+          coverage: none
+
+      - name: Copy .env
+        run: cp .env.example .env
+
+      - name: Install dependencies
+        run: composer install --no-progress --prefer-dist
+
+      - name: Generate key
+        run: php artisan key:generate
+
+      - name: Run tests
+        run: php artisan test
+
+  staging:
+    name: Staging
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to staging
+        run: |
+          echo "Deploying application to staging..."
+          echo "Staging deployment is simulated."
+
+  production:
+    name: Production
+    needs: staging
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Deployment steps
+        run: |
+          echo "[1/7] Aktifkan maintenance mode"
+          echo "[2/7] Pull source code terbaru"
+          echo "[3/7] Install Composer dependencies"
+          echo "[4/7] Jalankan database migration"
+          echo "[5/7] Cache configuration"
+          echo "[6/7] Cache route dan view"
+          echo "[7/7] Nonaktifkan maintenance mode"
