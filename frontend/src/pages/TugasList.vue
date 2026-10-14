@@ -27,8 +27,8 @@
       <tbody>
         <tr v-for="tugasItem in tugas" :key="tugasItem.id">
           <td>{{ tugasItem.id }}</td>
-          <td>{{ tugasItem.judul }}</td>
-          <td>{{ tugasItem.deskripsi }}</td>
+          <td>{{ tugasItem.title }}</td>
+          <td>{{ tugasItem.description }}</td>
           <td>
             <span :class="['status-badge', `status-${tugasItem.status || 'pending'}`]">
               {{ tugasItem.status || 'pending' }}
@@ -46,8 +46,8 @@ import { ref, onMounted } from 'vue'
 
 interface Tugas {
   id: number
-  judul: string
-  deskripsi: string
+  title: string
+  description: string
   status: string
   created_at: string
 }

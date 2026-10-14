@@ -40,7 +40,7 @@ describe('TugasList component', () => {
 
   it('displays tugas items after successful fetch', async () => {
     const mockTugas = [
-      { id: 1, judul: 'Test Tugas 1', deskripsi: 'Deskripsi 1', status: 'pending', created_at: '2024-01-01' },
+      { id: 1, title: 'Test Tugas 1', description: 'Deskripsi 1', status: 'pending', created_at: '2024-01-01' },
     ]
 
     const fetchPromise = Promise.resolve({
