@@ -26,7 +26,7 @@ RUN composer dump-autoload --optimize --no-dev
 FROM php:8.4.26-cli-alpine3.24
 
 # Metadata
-LABEL org.opencontainers.image.source=https://github.com/KEPL2026/evolusi-pl-24-539132-SV-24568
+LABEL org.opencontainers.image.source=https://github.com/RakanAja05/evolusi-pl-24-539132-SV-24568
 
 # Set working directory
 WORKDIR /var/www/html
