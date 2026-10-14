@@ -1,0 +1,53 @@
+# Dependencies (akan diinstall via composer di Dockerfile)
+node_modules
+vendor
+
+# Git repository
+.git
+.gitignore
+.gitattributes
+
+# Environment files (diberikan saat runtime via --env-file)
+.env
+.env.*
+!.env.example
+
+# Frontend Vue app (tidak diperlukan di Laravel API container)
+frontend
+
+# Dokumentasi dan laporan
+laporan
+README.md
+*.md
+
+# Storage logs dan cache (directory structure dibuat di Dockerfile, isi tidak perlu)
+storage/logs/*.log
+storage/framework/sessions/*
+storage/framework/views/*
+storage/framework/cache/data/*
+
+# IDE and editor files
+.idea
+.vscode
+.nova
+.phpactor.json
+.zed
+.cursor
+
+# Testing and cache files
+.phpunit.result.cache
+.phpunit.cache
+*.log
+auth.json
+bootstrap/cache/*.php
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+/public/build
+/public/hot
+
+# PENTING: database/ folder TIDAK di-exclude
+# database.sqlite harus ikut ke image karena di-gitignore dan hanya ada di lokal
