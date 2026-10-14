@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
-import { createWebHashHistory, createRouter, RouterView } from 'vue-router'
-
+import { createWebHashHistory, createRouter } from 'vue-router'
+import App from './App.vue'
 import Home from './pages/Home.vue'
 import TugasList from './pages/TugasList.vue'
 
@@ -14,7 +14,6 @@ const router = createRouter({
   routes,
 })
 
-const app = createApp({})
+const app = createApp(App)
 app.use(router)
-app.component('RouterView', RouterView)
 app.mount('#app')
